@@ -1,9 +1,10 @@
 require 'spec_helper'
-
 describe 'redhat' do
 
+  it { should compile.with_all_deps }
+
   describe 'should contain class puppet' do
-    it { should include_class('redhat') }
+    it { should contain_class('redhat') }
   end
 
   describe 'should contain package' do
