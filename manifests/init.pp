@@ -2,14 +2,7 @@
 #
 # Manage RedHat systems.
 #
-# Meant to be applied to all classes where osfamily is redhat.
-#
-# ### Parameters: ###
-# root_bashrc_source
-# ------------------
-# [module]/[filename] to serve for root's .bashrc
-#
-# - *Default*: 'redhat/root_bashrc'
+# Meant to be applied to all systems where osfamily is redhat.
 #
 class redhat (
   $root_bashrc_source = 'redhat/root_bashrc',
