@@ -1,0 +1,71 @@
+{
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "name": "ghoneycutt-redhat",
+  "version": "1.0.0",
+  "source": "git@github.com:ghoneycutt/puppet-module-redhat.git",
+  "author": "ghoneycutt",
+  "license": "Apache License, Version 2.0",
+  "summary": "Manage RedHat based systems",
+  "description": "Manage RedHat (or where osfamily is redhat) specific bits",
+  "project_page": "https://github.com/ghoneycutt/puppet-module-redhat",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.2.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Gemfile": "6992d521994d948eb6e48acd733a07bf",
+    "LICENSE": "2f332f302787b48dc4904bdc3b83abcc",
+    "Modulefile": "de9d88b3a6e2374fe08c79744be1d880",
+    "README.md": "578976713b21b5e79d7f226c4f4ad17d",
+    "Rakefile": "8ff6a0f7db638421d1742c5d365d0266",
+    "files/root_bashrc": "1625dc64cc8b28e5e8f65ba59615b063",
+    "manifests/init.pp": "3aab94b7509e4ee9f96a580645439438",
+    "spec/classes/init_spec.rb": "99b278ca108e935a1bcc2670eee66d04",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "tests/init.pp": "b88a7bb580473160159c9edca4eb9816"
+  }
+}
