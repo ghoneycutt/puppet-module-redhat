@@ -45,33 +45,4 @@ describe 'redhat' do
       })
     }
   end
-
-  describe 'should contain service and file for EL6' do
-    let :facts do
-      {
-        :osfamily          => 'redhat',
-        :lsbmajdistrelease => '6',
-      }
-    end
-    it {
-      should contain_file('ttys1_conf').with({
-        'ensure' => 'file',
-        'path'   => '/etc/init/ttyS1.conf',
-        'owner'  => 'root',
-        'group'  => 'root',
-        'mode'   => '0644',
-      })
-    }
-    it {
-      should contain_service('ttyS1').with({
-        'ensure'     => 'running',
-        'hasstatus'  => 'false',
-        'hasrestart' => 'false',
-        'start'      => '/sbin/initctl start ttyS1',
-        'stop'       => '/sbin/initctl stop ttyS1',
-        'status'     => '/sbin/initctl status ttyS1 | grep ^"ttyS1 start/running" 1>/dev/null 2>&1',
-        'require'    => 'File[ttys1_conf]',
-      })
-    }
-  end
 end
