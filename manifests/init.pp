@@ -2,7 +2,7 @@
 #
 # Manage RedHat systems.
 #
-# Meant to be applied to all systems where osfamily is redhat.
+# Meant to be applied to all systems where osfamily is RedHat.
 #
 class redhat (
   $root_bashrc_source = 'redhat/root_bashrc',

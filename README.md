@@ -6,7 +6,7 @@ https://api.travis-ci.org/ghoneycutt/puppet-module-redhat.png?branch=master)](ht
 
 Puppet module to manage RedHat systems.
 
-Meant to be applied to all classes where `$::osfamily == redhat`.
+Meant to be applied to all classes where `$::osfamily == RedHat`.
 
 ===
 
