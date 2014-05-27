@@ -21,6 +21,12 @@ Meant to be applied to all classes where `$::osfamily == redhat`.
 
 root_bashrc_source
 ------------------
-[module]/[filename] to serve for root's .bashrc
+[module]/[filename] to serve for root's .bashrc.
 
 - *Default*: 'redhat/root_bashrc'
+
+root_bashrc_mode
+----------------
+String of four digit octal notation for mode of root's .bashrc.
+
+- *Default*: '0644'
