@@ -7,10 +7,16 @@
 class redhat (
   $root_bashrc_source = undef,
   $root_bashrc_mode   = '0644',
+  $umask              = undef,
 ) {
 
   validate_re($root_bashrc_mode, '^[0-7]{4}$',
     "redhat::root_bashrc_mode is <${root_bashrc_mode}> and must be a valid four digit mode in octal notation.")
+
+  if $umask != undef {
+    validate_re($umask, '^[0-7]{4}$',
+      "redhat::umask is <${umask}> and must be a valid four digit mode in octal notation.")
+  }
 
   # redhat-lsb is needed for some facts that we will depend on. It should be
   # already installed by default in the kickstart.

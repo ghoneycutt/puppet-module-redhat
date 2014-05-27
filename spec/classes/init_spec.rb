@@ -27,6 +27,8 @@ describe 'redhat' do
           'mode'   => '0644',
         })
       }
+
+      it { should contain_file('root_bashrc').without_content(/^umask/) }
     end
   end
 
@@ -70,6 +72,26 @@ describe 'redhat' do
           expect {
             should contain_class('redhat')
           }.to raise_error(Puppet::Error,/^redhat::root_bashrc_mode is <#{mode}> and must be a valid four digit mode in octal notation./)
+        end
+      end
+    end
+  end
+
+  describe 'with umask parameter specified' do
+    context 'as a valid umask' do
+      let(:params) { { :umask => '0022' } }
+
+      it { should contain_file('root_bashrc').with_content(/^umask 0022$/) }
+    end
+
+    [true,'666','00222'].each do |umask|
+      context "as invalid umask #{umask}" do
+        let(:params) { { :umask => umask } }
+
+        it 'should fail' do
+          expect {
+            should contain_class('redhat')
+          }.to raise_error(Puppet::Error,/^redhat::umask is <#{umask}> and must be a valid four digit mode in octal notation./)
         end
       end
     end
