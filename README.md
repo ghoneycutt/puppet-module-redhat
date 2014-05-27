@@ -30,3 +30,9 @@ root_bashrc_mode
 String of four digit octal notation for mode of root's .bashrc.
 
 - *Default*: '0644'
+
+umask
+-----
+String of four digit octal notation for umask to be set in root's .bashrc. This is mutually exclusive with root_bashrc_source since it uses a template.
+
+- *Default*: `undef`
