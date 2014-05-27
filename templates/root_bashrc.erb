@@ -17,8 +17,8 @@ alias dfh='df -h'
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
-
 <% if @umask -%>
+
 # Set the umask
 umask <%= @umask %>
 <% end -%>
