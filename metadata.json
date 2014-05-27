@@ -40,7 +40,7 @@
     }
   ],
   "name": "ghoneycutt-redhat",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "source": "git@github.com:ghoneycutt/puppet-module-redhat.git",
   "author": "ghoneycutt",
   "license": "Apache License, Version 2.0",
@@ -57,14 +57,14 @@
 
   ],
   "checksums": {
-    "Gemfile": "6992d521994d948eb6e48acd733a07bf",
+    "Gemfile": "f184c7cca73bc8169572ab8c48e223bc",
     "LICENSE": "2f332f302787b48dc4904bdc3b83abcc",
-    "Modulefile": "de9d88b3a6e2374fe08c79744be1d880",
-    "README.md": "578976713b21b5e79d7f226c4f4ad17d",
+    "Modulefile": "86b0a0deb46e55130d9cf2080978521a",
+    "README.md": "8189a5d20198d2a8d8397a3f6ea7d17d",
     "Rakefile": "8ff6a0f7db638421d1742c5d365d0266",
     "files/root_bashrc": "1625dc64cc8b28e5e8f65ba59615b063",
-    "manifests/init.pp": "3aab94b7509e4ee9f96a580645439438",
-    "spec/classes/init_spec.rb": "99b278ca108e935a1bcc2670eee66d04",
+    "manifests/init.pp": "0bf76330652be30b38da15ee23a27ddc",
+    "spec/classes/init_spec.rb": "2bfe88e75d9faaf7b33b560b7a03f002",
     "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
     "tests/init.pp": "b88a7bb580473160159c9edca4eb9816"
   }
