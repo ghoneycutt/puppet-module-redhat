@@ -7,33 +7,32 @@ describe 'redhat' do
     it { should contain_class('redhat') }
   end
 
-  describe 'should contain package' do
-    it {
-      should contain_package('redhat-lsb').with({
-        'ensure' => 'present',
-      })
-    }
-  end
-
-  describe 'should contain file with default parameters' do
-    it {
-      should contain_file('root_bashrc').with({
-        'ensure' => 'file',
-        'path'   => '/.bashrc',
-        'source' => 'puppet:///modules/redhat/root_bashrc',
-        'owner'  => 'root',
-        'group'  => 'root',
-        'mode'   => '0644',
-      })
-    }
-  end
-
-  describe 'should contain file with one parameter for root_bashrc_source' do
-    let :params do
-      {
-        :root_bashrc_source => 'source/file'
+  describe 'with default values for parameters' do
+    context 'should contain package' do
+      it {
+        should contain_package('redhat-lsb').with({
+          'ensure' => 'present',
+        })
       }
     end
+
+    context 'should contain .bashrc with default parameters' do
+      it {
+        should contain_file('root_bashrc').with({
+          'ensure' => 'file',
+          'path'   => '/.bashrc',
+          'source' => 'puppet:///modules/redhat/root_bashrc',
+          'owner'  => 'root',
+          'group'  => 'root',
+          'mode'   => '0644',
+        })
+      }
+    end
+  end
+
+  describe 'with root_bashrc_source specified' do
+    let(:params) { { :root_bashrc_source => 'source/file' } }
+
     it {
       should contain_file('root_bashrc').with({
         'ensure' => 'file',
