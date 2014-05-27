@@ -5,7 +5,7 @@
 # Meant to be applied to all systems where osfamily is RedHat.
 #
 class redhat (
-  $root_bashrc_source = 'redhat/root_bashrc',
+  $root_bashrc_source = undef,
   $root_bashrc_mode   = '0644',
 ) {
 
@@ -18,12 +18,21 @@ class redhat (
     ensure => present,
   }
 
+  if $root_bashrc_source == undef {
+    $root_bashrc_content = template('redhat/root_bashrc.erb')
+    $root_bashrc_source_real = undef
+  } else {
+    $root_bashrc_content = undef
+    $root_bashrc_source_real = "puppet:///modules/${root_bashrc_source}"
+  }
+
   file { 'root_bashrc':
-    ensure => file,
-    path   => "${::root_home}/.bashrc",
-    source => "puppet:///modules/${root_bashrc_source}",
-    owner  => 'root',
-    group  => 'root',
-    mode   => $root_bashrc_mode,
+    ensure  => file,
+    path    => "${::root_home}/.bashrc",
+    source  => $root_bashrc_source_real,
+    content => $root_bashrc_content,
+    owner   => 'root',
+    group   => 'root',
+    mode    => $root_bashrc_mode,
   }
 }

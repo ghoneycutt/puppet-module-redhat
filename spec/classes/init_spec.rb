@@ -21,7 +21,7 @@ describe 'redhat' do
         should contain_file('root_bashrc').with({
           'ensure' => 'file',
           'path'   => '/.bashrc',
-          'source' => 'puppet:///modules/redhat/root_bashrc',
+          'source' => nil,
           'owner'  => 'root',
           'group'  => 'root',
           'mode'   => '0644',
@@ -35,12 +35,13 @@ describe 'redhat' do
 
     it {
       should contain_file('root_bashrc').with({
-        'ensure' => 'file',
-        'path'   => '/.bashrc',
-        'source' => 'puppet:///modules/source/file',
-        'owner'  => 'root',
-        'group'  => 'root',
-        'mode'   => '0644',
+        'ensure'  => 'file',
+        'path'    => '/.bashrc',
+        'source'  => 'puppet:///modules/source/file',
+        'content' => nil,
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
       })
     }
   end
@@ -51,12 +52,12 @@ describe 'redhat' do
 
       it {
         should contain_file('root_bashrc').with({
-          'ensure' => 'file',
-          'path'   => '/.bashrc',
-          'source' => 'puppet:///modules/redhat/root_bashrc',
-          'owner'  => 'root',
-          'group'  => 'root',
-          'mode'   => '0600',
+          'ensure'  => 'file',
+          'path'    => '/.bashrc',
+          'source'  => nil,
+          'owner'   => 'root',
+          'group'   => 'root',
+          'mode'    => '0600',
         })
       }
     end
