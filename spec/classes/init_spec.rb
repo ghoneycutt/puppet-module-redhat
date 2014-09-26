@@ -1,34 +1,58 @@
 require 'spec_helper'
 describe 'redhat' do
 
-  it { should compile.with_all_deps }
+  platforms = {
+    'el5' =>
+      { :osfamily          => 'RedHat',
+        :lsbmajdistrelease => '5',
+        :lsb_package       => 'redhat-lsb',
+      },
+    'el6' =>
+      { :osfamily          => 'RedHat',
+        :lsbmajdistrelease => '6',
+        :lsb_package       => 'redhat-lsb',
+      },
+    'el7' =>
+      { :osfamily          => 'RedHat',
+        :lsbmajdistrelease => '7',
+        :lsb_package       => 'redhat-lsb-core',
+      },
+  }
 
-  describe 'should contain class puppet' do
-    it { should contain_class('redhat') }
-  end
+  describe 'with values for parameters left at their default values' do
+    platforms.sort.each do |k,v|
+      context "#{v[:osfamily]} #{v[:lsbmajdistrelease]}" do
+        let :facts do
+          { :osfamily          => v[:osfamily],
+            :lsbmajdistrelease => v[:lsbmajdistrelease],
+          }
+        end
 
-  describe 'with default values for parameters' do
-    context 'should contain package' do
-      it {
-        should contain_package('redhat-lsb').with({
-          'ensure' => 'present',
-        })
-      }
-    end
 
-    context 'should contain .bashrc with default parameters' do
-      it {
-        should contain_file('root_bashrc').with({
-          'ensure' => 'file',
-          'path'   => '/.bashrc',
-          'source' => nil,
-          'owner'  => 'root',
-          'group'  => 'root',
-          'mode'   => '0644',
-        })
-      }
+        it { should compile.with_all_deps }
 
-      it { should contain_file('root_bashrc').without_content(/^umask/) }
+        it { should contain_class('redhat') }
+
+        it {
+          should contain_package('redhat-lsb').with({
+            'name'   => v[:lsb_package],
+            'ensure' => 'present',
+          })
+        }
+
+        it {
+          should contain_file('root_bashrc').with({
+            'ensure' => 'file',
+            'path'   => '/.bashrc',
+            'source' => nil,
+            'owner'  => 'root',
+            'group'  => 'root',
+            'mode'   => '0644',
+          })
+        }
+
+        it { should contain_file('root_bashrc').without_content(/^umask/) }
+      end
     end
   end
 
@@ -46,6 +70,31 @@ describe 'redhat' do
         'mode'    => '0644',
       })
     }
+  end
+
+  describe 'with lsb_package specified' do
+    context 'as a valid string' do
+      let(:params) { { :lsb_package => 'my-redhat-lsb' } }
+
+      it {
+        should contain_package('redhat-lsb').with({
+          'name'   => 'my-redhat-lsb',
+          'ensure' => 'present',
+        })
+      }
+    end
+
+    [true,['an','array'],].each do |package_name|
+      context "as an invalid type (non-string) #{package_name}" do
+        let(:params) { { :lsb_package => package_name } }
+
+        it 'should fail' do
+          expect {
+            should contain_class('redhat')
+          }.to raise_error(Puppet::Error)
+        end
+      end
+    end
   end
 
   describe 'with root_bashrc_mode specified' do

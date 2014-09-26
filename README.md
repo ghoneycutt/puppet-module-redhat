@@ -14,10 +14,17 @@ Meant to be applied to all classes where `$::osfamily == RedHat`.
 
   * EL 5
   * EL 6
+  * EL 7
 
 ===
 
 # Parameters
+
+lsb_package
+-----------
+*string* Name of redhat-lsb package. EL7 is 'redhat-lsb-core' and previous versions are 'redhat-lsb'.
+
+- *Default*: based on lsbmajdistrelease
 
 root_bashrc_source
 ------------------
