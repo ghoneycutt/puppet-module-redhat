@@ -18,6 +18,9 @@ class redhat (
     '7': {
       $lsb_package_default = 'redhat-lsb-core'
     }
+    default: {
+      fail("redhat module supports versions 5, 6 and 7. lsbmajdistrelease is <${::lsbmajdistrelease}>.")
+    }
   }
 
   if $lsb_package == 'USE_DEFAULTS' {
@@ -39,8 +42,8 @@ class redhat (
   # redhat-lsb is needed for some facts that we will depend on. It should be
   # already installed by default in the kickstart.
   package { 'redhat-lsb':
-    name   => $lsb_package_real,
     ensure => present,
+    name   => $lsb_package_real,
   }
 
   if $root_bashrc_source == undef {
