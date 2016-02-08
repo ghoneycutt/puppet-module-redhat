@@ -1,5 +1,6 @@
 require 'spec_helper'
 describe 'redhat' do
+  let(:facts) { { :lsbmajdistrelease => '7' } }
 
   platforms = {
     'el5' =>
@@ -120,7 +121,7 @@ describe 'redhat' do
         it 'should fail' do
           expect {
             should contain_class('redhat')
-          }.to raise_error(Puppet::Error,/^redhat::root_bashrc_mode is <#{mode}> and must be a valid four digit mode in octal notation./)
+          }.to raise_error(Puppet::Error,/redhat::root_bashrc_mode is <#{mode}> and must be a valid four digit mode in octal notation\./)
         end
       end
     end
@@ -140,7 +141,7 @@ describe 'redhat' do
         it 'should fail' do
           expect {
             should contain_class('redhat')
-          }.to raise_error(Puppet::Error,/^redhat::umask is <#{umask}> and must be a valid four digit mode in octal notation./)
+          }.to raise_error(Puppet::Error,/redhat::umask is <#{umask}> and must be a valid four digit mode in octal notation\./)
         end
       end
     end

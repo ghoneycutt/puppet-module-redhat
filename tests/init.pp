@@ -1,1 +1,1 @@
-include redhat
+include ::redhat
