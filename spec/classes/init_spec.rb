@@ -1,5 +1,6 @@
 require 'spec_helper'
 describe 'redhat' do
+  let(:facts) { { :lsbmajdistrelease => '7' } }
 
   platforms = {
     'el5' =>
