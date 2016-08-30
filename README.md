@@ -12,6 +12,11 @@ Meant to be applied to all classes where `$::osfamily == RedHat`.
 
 # Compatibility
 
+This module has been tested to work on the following systems with Puppet
+versions 3 and 4 with Ruby versions 1.8.7, 1.9.3, 2.0.0, 2.1.0 and
+2.3.1. For an exact matrix of Puppet and Ruby versions, please consult
+.travis.yml.
+
   * EL 5
   * EL 6
   * EL 7
