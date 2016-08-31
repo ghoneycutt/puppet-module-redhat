@@ -1,6 +1,11 @@
 require 'spec_helper'
 describe 'redhat' do
-  let(:facts) { { :lsbmajdistrelease => '7' } }
+  let(:facts) do
+    {
+      :lsbmajdistrelease => '7',
+      :root_home         => '/root',
+    }
+  end
 
   platforms = {
     'el5' =>
@@ -26,6 +31,7 @@ describe 'redhat' do
         let :facts do
           { :osfamily          => v[:osfamily],
             :lsbmajdistrelease => v[:lsbmajdistrelease],
+            :root_home         => '/root',
           }
         end
 
@@ -44,7 +50,7 @@ describe 'redhat' do
         it {
           should contain_file('root_bashrc').with({
             'ensure' => 'file',
-            'path'   => '/.bashrc',
+            'path'   => '/root/.bashrc',
             'source' => nil,
             'owner'  => 'root',
             'group'  => 'root',
@@ -63,12 +69,27 @@ describe 'redhat' do
     it {
       should contain_file('root_bashrc').with({
         'ensure'  => 'file',
-        'path'    => '/.bashrc',
+        'path'    => '/root/.bashrc',
         'source'  => 'puppet:///modules/source/file',
         'content' => nil,
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
+      })
+    }
+  end
+
+  describe 'with non-standard root_home' do
+    let(:facts) do
+      {
+        :root_home         => '/foo',
+        :lsbmajdistrelease => '7',
+      }
+    end
+
+    it {
+      should contain_file('root_bashrc').with({
+        'path'   => '/foo/.bashrc',
       })
     }
   end
@@ -105,7 +126,7 @@ describe 'redhat' do
       it {
         should contain_file('root_bashrc').with({
           'ensure'  => 'file',
-          'path'    => '/.bashrc',
+          'path'    => '/root/.bashrc',
           'source'  => nil,
           'owner'   => 'root',
           'group'   => 'root',
